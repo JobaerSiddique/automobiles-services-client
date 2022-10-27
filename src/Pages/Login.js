@@ -9,17 +9,20 @@ const Login = () => {
     
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const onSubmit = (data) => {
+    
+  const onSubmit = async(data) => {
     console.log(data)
+    
+   
 };
 
 if(gUser){
     console.log(gUser)
 }
-if(gError){
+if(gError ){
    return <p>{gError.message}</p>
 }
-if(gLoading){
+if(gLoading ){
     return <Loading></Loading>
 }
     return (
