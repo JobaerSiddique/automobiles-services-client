@@ -127,12 +127,12 @@ className="input input-bordered w-full max-w-xs text-black"
 </label>
 </div>
     <p className='mb-5'>Already have an account? <Link to="/login"><span className='text-info'>Please login</span></Link></p>
-<input type="submit" value="signup" className='btn btn-outline btn-warning  w-full max-w-xs' />
+<input type="submit" value="signup" className='btn btn-outline btn-warning  w-full max-w-xs hover:scale-75 translate-x-4 skew-y-3' />
   </form>
 
   <div className="divider">OR</div>
-  <button onClick={() => signInWithGoogle()} className="btn glass btn-info text-"><img width="40px" src={glogo} alt="" /><p>Continue with Google</p></button>
-  <button onClick={() => signInWithFacebook()} className="btn glass btn-info text-"><img width="30px" src={faLogo} alt="" /><p>Continue with facebook</p></button>
+  <button onClick={() => signInWithGoogle()} className="btn glass btn-info hover:scale-110"><img width="40px" src={glogo} alt="" /><p>Continue with Google</p></button>
+  <button onClick={() => signInWithFacebook()} className="btn glass btn-info hover:scale-110"><img width="30px" src={faLogo} alt="" /><p>Continue with facebook</p></button>
 </div>
 </div>
       </div>

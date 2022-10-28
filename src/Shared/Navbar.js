@@ -3,6 +3,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../Pages/Firebase.init';
+import Typewriter from 'typewriter-effect';
 
 const Navbar = () => {
   const [user] = useAuthState(auth);  
@@ -29,7 +30,18 @@ const Navbar = () => {
        {menuItems}
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">Automobiles Services</a>
+    <a className="btn btn-ghost normal-case text-xl">
+      <span >
+      <Typewriter
+      options={{
+        strings:['Automobiles','Services','Provider'],
+        autoStart:true,
+        loop:true
+      }}
+      />
+      </span>
+
+    </a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0">

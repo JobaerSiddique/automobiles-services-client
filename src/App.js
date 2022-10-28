@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Navbar from './Shared/Navbar';
+import PageNotFound from './Shared/PageNotFound';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
     <Route path='/customer/review' element={<Customer/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<Signup/>}/>
+    <Route path='*' element={<PageNotFound/>}/>
      </Routes>
     </div>
   );
