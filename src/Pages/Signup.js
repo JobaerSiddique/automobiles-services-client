@@ -2,27 +2,38 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import img from "../images/img1.jpg"
 import auth from './Firebase.init';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from "../Shared/Loading"
 import { Link } from 'react-router-dom';
 import video from "../videos/car.mp4"
+import glogo from "../images/glogo.png"
+import faLogo from "../images/facebooklogo.png"
+
 const Signup = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    
+    const [signInWithFacebook, faUser, faLoading, faError] = useSignInWithFacebook(auth);
+    const [
+      createUserWithEmailAndPassword,
+      user,
+      loading,
+      error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const onSubmit = async(data) => {
     console.log(data)
-    
+     await createUserWithEmailAndPassword (data.email, data.password)
+     await updateProfile ({displayName:data.name})
    
 };
 
-if(gUser){
-    console.log(gUser)
+if(gUser || user ||faUser ){
+    console.log(gUser || user)
 }
-if(gError ){
+if(gError || error || updateError || faError ){
    return <p>{gError.message}</p>
 }
-if(gLoading ){
+if(gLoading || loading || updating ||  faLoading){
     return <Loading></Loading>
 }
     return (
@@ -120,7 +131,8 @@ className="input input-bordered w-full max-w-xs text-black"
   </form>
 
   <div className="divider">OR</div>
-  <button onClick={() => signInWithGoogle()} className="btn glass btn-info text-">Continue With Google</button>
+  <button onClick={() => signInWithGoogle()} className="btn glass btn-info text-"><img width="40px" src={glogo} alt="" /><p>Continue with Google</p></button>
+  <button onClick={() => signInWithFacebook()} className="btn glass btn-info text-"><img width="30px" src={faLogo} alt="" /><p>Continue with facebook</p></button>
 </div>
 </div>
       </div>

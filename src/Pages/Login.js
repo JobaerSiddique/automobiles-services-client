@@ -2,13 +2,16 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import img from "../images/img1.jpg"
 import auth from './Firebase.init';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from "../Shared/Loading"
 import { Link } from 'react-router-dom';
+import glogo from "../images/glogo.png"
+import faLogo from "../images/facebooklogo.png"
 const Login = () => {
     
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [signInWithFacebook, faUser, faLoading, faError] = useSignInWithFacebook(auth);
     
   const onSubmit = async(data) => {
     console.log(data)
@@ -16,13 +19,13 @@ const Login = () => {
    
 };
 
-if(gUser){
+if(gUser || faUser){
     console.log(gUser)
 }
-if(gError ){
+if(gError || faError ){
    return <p>{gError.message}</p>
 }
-if(gLoading ){
+if(gLoading || faLoading ){
     return <Loading></Loading>
 }
     return (
@@ -33,7 +36,7 @@ if(gLoading ){
           <div className="card w-96 bg-base-100 shadow-xl image-full">
 <figure><img src={img} alt="Shoes" /></figure>
 <div className="card-body">
-  <h2 className=" text-center text-2xl ">Login</h2>
+  <h2 className=" text-center text-2xl text-[#e11d48] font-bold ">Login</h2>
   <form onSubmit={handleSubmit(onSubmit)}>
   <div className="form-control w-full max-w-xs">
 <label className="label">
@@ -83,7 +86,8 @@ className="input input-bordered w-full max-w-xs text-black"
   </form>
 
   <div className="divider">OR</div>
-  <button onClick={() => signInWithGoogle()} className="btn glass btn-info text-">Continue With Google</button>
+  <button onClick={() => signInWithGoogle()} className="btn glass btn-info text-"><img width="40px" src={glogo} alt="" /><p>Continue with Google</p></button>
+  <button onClick={() => signInWithFacebook()} className="btn glass btn-info text-"><img width="30px" src={faLogo} alt="" /><p>Continue with facebook</p></button>
 </div>
 </div>
       </div>
