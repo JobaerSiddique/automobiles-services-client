@@ -4,7 +4,7 @@ import img from "../images/img1.jpg"
 import auth from './Firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from "../Shared/Loading"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import video from "../videos/car.mp4"
 import glogo from "../images/glogo.png"
 import faLogo from "../images/facebooklogo.png"
@@ -19,16 +19,19 @@ const Signup = () => {
       loading,
       error,
     ] = useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate()
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const onSubmit = async(data) => {
     console.log(data)
      await createUserWithEmailAndPassword (data.email, data.password)
      await updateProfile ({displayName:data.name})
+    
    
 };
 
 if(gUser || user ||faUser ){
     console.log(gUser || user)
+    navigate('/garage')
 }
 if(gError || error || updateError || faError ){
    return <p>{gError.message}</p>

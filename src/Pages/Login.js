@@ -4,23 +4,26 @@ import img from "../images/img1.jpg"
 import auth from './Firebase.init';
 import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from "../Shared/Loading"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import glogo from "../images/glogo.png"
 import faLogo from "../images/facebooklogo.png"
+import photo from "../images/loginpage.jpg"
 const Login = () => {
     
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, faUser, faLoading, faError] = useSignInWithFacebook(auth);
-    
+    const navigate = useNavigate()
   const onSubmit = async(data) => {
     console.log(data)
+    navigate("/")
     
    
 };
 
 if(gUser || faUser){
     console.log(gUser)
+    navigate("/")
 }
 if(gError || faError ){
    return <p>{gError.message}</p>
@@ -28,10 +31,11 @@ if(gError || faError ){
 if(gLoading || faLoading ){
     return <Loading></Loading>
 }
+
     return (
-    <>
-    <h1 className='text-center text-5xl mt-08 font-bold text-primary'>Welcome to Automobiles Service</h1>
-        <div className='flex h-screen justify-center items-center'>
+    
+   
+        <div style={{backgroundImage:`url(${photo})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}} className='flex h-screen justify-center items-center'>
           
           <div className="card w-96 bg-base-100 shadow-xl image-full">
 <figure><img src={img} alt="Shoes" /></figure>
@@ -91,7 +95,7 @@ className="input input-bordered w-full max-w-xs text-black"
 </div>
 </div>
       </div>
-    </>
+    
     );
 };
 
