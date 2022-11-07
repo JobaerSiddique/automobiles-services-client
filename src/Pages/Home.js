@@ -1,9 +1,10 @@
 import React from 'react';
+import Carousal from '../Shared/Carousal';
 
 const Home = () => {
     return (
         <div>
-            <h1>This is Home page</h1>
+            <Carousal></Carousal>
         </div>
     );
 };

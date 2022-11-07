@@ -4,7 +4,7 @@ import img from "../images/img1.jpg"
 import auth from './Firebase.init';
 import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from "../Shared/Loading"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import glogo from "../images/glogo.png"
 import faLogo from "../images/facebooklogo.png"
 import photo from "../images/loginpage.jpg"
@@ -14,6 +14,8 @@ const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, faUser, faLoading, faError] = useSignInWithFacebook(auth);
     const navigate = useNavigate()
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/"
   const onSubmit = async(data) => {
     console.log(data)
     navigate("/")
@@ -23,7 +25,7 @@ const Login = () => {
 
 if(gUser || faUser){
     console.log(gUser)
-    navigate("/")
+    navigate(from,{replace:true})
 }
 if(gError || faError ){
    return <p>{gError.message}</p>

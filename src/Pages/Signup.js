@@ -5,7 +5,7 @@ import auth from './Firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from "../Shared/Loading"
 import { Link, useNavigate } from 'react-router-dom';
-import video from "../videos/car.mp4"
+import signUp from "../images/signUp.jpg"
 import glogo from "../images/glogo.png"
 import faLogo from "../images/facebooklogo.png"
 
@@ -40,25 +40,8 @@ if(gLoading || loading || updating ||  faLoading){
     return <Loading></Loading>
 }
     return (
-        <div>
-           <video 
-           autoPlay
-           loop
-           muted
-           style={{
-            position:"absolute",
-            width:"100%",
-            left:"50%",
-            top:"50%",
-            height:"100%",
-            objectFit:"cover",
-            transform:"translate(-50%,-50%)",
-            zIndex:"1"
-           }}
-           src={video}
-           type="video/mp4"
-           >
-            </video> 
+        <div style={{backgroundImage:`url(${signUp})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
+          
         <div className='flex h-screen justify-center items-center'>
           
           <div className="card w-96 bg-base-100 shadow-xl image-full">

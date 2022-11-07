@@ -11,16 +11,20 @@ const Navbar = () => {
     signOut(auth);
   };
   const menuItems=
-    <>
-    <li><Link to="/">Home</Link></li>
+    < >
+    <li  ><Link className='hover:bg- secondary' to="/">Home</Link></li>
     <li><Link to="/garage">Garage List</Link></li>
     <li><Link to="/customer/review">Customer Review</Link></li>
-    <li>{user? <button onClick={logout} className="btn btn-ghost">logOut <p className='text-info'>{user.displayName}</p></button>:<Link to="/login">Login</Link>}</li>
+    
+    <li>{user && <Link to="/dashboard">Dashboard</Link>}</li>
+    <li>{user? <button onClick={logout} className="btn btn-ghost">logOut <p className='text-info'>{user.displayName}</p></button>:<Link to="/login">Login</Link>}
+    </li>
     </>
     
     
+    
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 bg-gradient-to-r from-indigo-500">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -31,10 +35,10 @@ const Navbar = () => {
       </ul>
     </div>
     <a className="btn btn-ghost normal-case text-xl">
-      <span >
+      <span  className='text-white'>
       <Typewriter
       options={{
-        strings:['Automobiles','Services','Provider'],
+        strings:['Automobiles','Service','Provider'],
         autoStart:true,
         loop:true
       }}
@@ -43,8 +47,8 @@ const Navbar = () => {
 
     </a>
   </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal p-0">
+  <div className="navbar-center hidden lg:flex ">
+    <ul className="menu menu-horizontal p-0 ">
      {menuItems}
     </ul>
   </div>
