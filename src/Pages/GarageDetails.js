@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
-import background from "../images/details.jpg"
+import background from "../images/gg.jpg";
 import Experts from './Experts';
 
 
@@ -12,7 +12,7 @@ const [service,setService]= useState({})
 const [experts,setExperts]=useState([])
 
 useEffect(()=>{
-    fetch(`http://localhost:5000/service/${garageId}`)
+    fetch(`https://automobiles-service-server.vercel.app/service/${garageId}`)
     .then(res=> res.json())
     .then(data=>{
         setService(data)
@@ -20,7 +20,7 @@ useEffect(()=>{
     })
 },[])
 useEffect(()=>{
-    fetch('http://localhost:5000/experts')
+    fetch('https://automobiles-service-server.vercel.app/experts')
     .then(res=>res.json())
     .then(data=>setExperts(data))
    },[])
@@ -35,7 +35,7 @@ useEffect(()=>{
                     <img className='border-2 border-amber-500 ' src={service.img} alt="" />
                 </div>
                 <div className='container mx-auto'>
-                    <h2 className='text-center text-5xl text-warning'>
+                    <h2 className='text-center text-5xl text-amber-500 font-bold'>
                     <Typewriter
       options={{
         strings:[`${service.name}`],
@@ -49,7 +49,7 @@ useEffect(()=>{
                 </div>
             </div>
           <div className='mt-20'>
-          <h2  className='text-justify p-4 text-warning'>{service.description}</h2>
+          <h2  className='text-justify p-4 text-white'>{service.description}</h2>
           </div>
         </div>
         </div>
@@ -64,7 +64,7 @@ useEffect(()=>{
                 }
             </div>
         </div>
-        <button  className='btn btn-primary'><Link to="/booking">Go to Booking</Link></button>
+        <button service={service}  className='btn btn-primary'><Link to="/booking">Go to Booking</Link></button>
        </div>
     );
 };
